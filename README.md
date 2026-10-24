@@ -204,7 +204,7 @@ All tools, scripts, and attack vectors in this repository are designed exclusive
 Created and maintained by:
 
 **Radek (Sixi)**  
-*Cloud & AI Architect — Secure Agentic AI & AI Red-Teaming*  
+*Senior Software Engineer & AI Architect — Secure Agentic AI & AI Red-Teaming*  
 GitHub: [@radeksixi](https://github.com/radeksixi)
 
 Mutual Ecosystem Projects:
