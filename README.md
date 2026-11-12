@@ -14,13 +14,12 @@ The labs run against local models on **NVIDIA Jetson Thor GB10**, **Ubuntu dual-
 
 ## 🏛️ The Open-Source Ecosystem
 
-This curriculum integrates four dedicated open-source projects into a cohesive security research and testing framework:
+This curriculum integrates three dedicated open-source projects into a cohesive security research and testing framework:
 
 ```mermaid
 graph TD
     subgraph OffensiveTools ["Offensive & Discovery Plane"]
         Probe["<b>sixi-scanner</b><br/>Autonomous Security Scanner CLI<br/><i>(27 Techniques, Multi-Turn Sequences, SARIF)</i><br/><a href='https://github.com/radeksixi/sixi-scanner'>github.com/radeksixi/sixi-scanner</a>"]
-        Redwire["<b>redwire</b><br/>Multi-Transport Connector Library<br/><i>(REST, MCP JSON-RPC, A2A, WS, SSRF Pinning)</i><br/><a href='https://github.com/radeksixi/redwire'>github.com/radeksixi/redwire</a>"]
     end
 
     subgraph EvaluationPlane ["Autonomous Evaluation Plane"]
@@ -31,16 +30,14 @@ graph TD
         Target["<b>adk-demo-target</b><br/>Atlas Banking Support Agent<br/><i>(3 Defense Postures: none, basic, hardened)</i><br/><a href='https://github.com/radeksixi/adk-demo-target'>github.com/radeksixi/adk-demo-target</a>"]
     end
 
-    Probe -->|Automated Probes| Redwire
-    Redwire -->|REST / MCP / A2A| Target
+    Probe -->|HTTP / REST / OpenAI Probes| Target
     Target -->|Dialogue Trajectories| Laya
     Laya -->|Sub-1ms Verdicts| Probe
 ```
 
 1. **[`radeksixi/sixi-scanner`](https://github.com/radeksixi/sixi-scanner)** (supersedes the archived [`radeksixi/agent-probe`](https://github.com/radeksixi/agent-probe)): An autonomous AI agent red-teaming CLI providing 27 built-in techniques across single-turn and stateful multi-turn sequences (Prompt Injections, System Prompt Leaks, Confused Deputy, Refund Cap Splitting, Outbound Taint Relay, False Action Claims) with recitation filtering and trace-backed judging.
 2. **[`radeksixi/adk-demo-target`](https://github.com/radeksixi/adk-demo-target)**: An enterprise customer support agent ("Atlas") built with Google's Agent Development Kit (ADK) demonstrating verifiable defense tiers (`none`, `basic`, `hardened`) and 6 ground-truth session-state violation flags.
-3. **[`radeksixi/redwire`](https://github.com/radeksixi/redwire)**: A high-performance Go multi-transport library abstracting REST, Model Context Protocol (MCP), Agent-to-Agent (A2A), and WebSocket protocols behind a unified interface with dial-time SSRF pinning.
-4. **[`radeksixi/laya-as-judge`](https://github.com/radeksixi/laya-as-judge)**: A sub-450M parameter specialized SLM evaluation engine capable of rendering safety, compliance, and multi-turn tool trajectory verdicts in **under 1 millisecond**.
+3. **[`radeksixi/laya-as-judge`](https://github.com/radeksixi/laya-as-judge)**: A sub-450M parameter specialized SLM evaluation engine capable of rendering safety, compliance, and multi-turn tool trajectory verdicts in **under 1 millisecond**.
 
 ---
 
@@ -92,7 +89,7 @@ graph TB
 | # | Lab Directory | Focus Area | Primary Tools | Hardware Platform | Difficulty |
 | :-: | :--- | :--- | :--- | :--- | :-: |
 | **01** | [`01-first-probe`](labs/01-first-probe) | **Baseline Autonomous Probing** | `sixi-scanner` | Local / Any | 🟢 Beginner |
-| **02** | [`02-multi-transport`](labs/02-multi-transport) | **Multi-Protocol & SSRF Defense** | `redwire` (REST, MCP, A2A) | Local / Go 1.22+ | 🟡 Intermediate |
+| **02** | [`02-multi-transport`](labs/02-multi-transport) | **Multi-Protocol & SSRF Defense** | Go stdlib (REST, MCP, A2A) | Local / Go 1.24+ | 🟡 Intermediate |
 | **03** | [`03-judge-evaluation`](labs/03-judge-evaluation) | **Sub-1ms Autonomous Evaluation** | `laya-as-judge` (<450M SLM) | Jetson Thor / CPU | 🟡 Intermediate |
 | **04** | [`04-local-llm-target`](labs/04-local-llm-target) | **Local LLM Target Hardening** | Qwen3.6-35B Abliterated | NVIDIA Jetson Thor | 🟡 Intermediate |
 | **05** | [`05-local-attacker`](labs/05-local-attacker) | **Autonomous Adversarial Duel** | `gemma4:12b-it-qat` vs 35B | NVIDIA Jetson Thor | 🔴 Advanced |
@@ -158,7 +155,7 @@ These are measurements from **one operator's** NVIDIA Jetson Thor GB10 running L
 
 - Linux (Ubuntu 22.04 / 24.04 / 26.04 or Tegra Linux on Jetson Thor / Orin / Nano)
 - Python 3.10+
-- Go 1.22+ (for `redwire` multi-transport lab)
+- Go 1.24+ (for Lab 02 multi-transport & SSRF defense)
 - [Ollama](https://ollama.ai) (optional, for local model inference on Jetson / PC)
 
 ### 2. Clone the Laboratory Repository
@@ -181,7 +178,7 @@ make test
 # Run Lab 01: Baseline scan with sixi-scanner
 make lab01
 
-# Run Lab 02: Multi-transport testing with redwire
+# Run Lab 02: Multi-transport testing & SSRF defense
 make lab02
 
 # Run Lab 03: Autonomous sub-1ms judge evaluation
@@ -211,7 +208,6 @@ Mutual Ecosystem Projects:
 - [sixi-scanner](https://github.com/radeksixi/sixi-scanner) — Autonomous AI agent security scanner CLI (supersedes [agent-probe](https://github.com/radeksixi/agent-probe))
 - [agent-redteam-benchmark](https://github.com/radeksixi/agent-redteam-benchmark) — Ground-truth precision & recall benchmark for AI agent red-team scanners
 - [adk-demo-target](https://github.com/radeksixi/adk-demo-target) — Deliberately attackable banking agent on Google ADK
-- [redwire](https://github.com/radeksixi/redwire) — Multi-transport agent connector (REST, MCP, A2A, WS)
 - [laya-as-judge](https://github.com/radeksixi/laya-as-judge) — Sub-450M fast evaluation SLM judge engine
 
 ---

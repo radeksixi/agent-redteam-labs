@@ -1,12 +1,3 @@
 module github.com/radeksixi/agent-redteam-labs/labs/02-multi-transport
 
-go 1.27
-
-require github.com/radeksixi/redwire v0.0.0
-
-require (
-	github.com/google/uuid v1.6.0 // indirect
-	github.com/gorilla/websocket v1.5.3 // indirect
-)
-
-replace github.com/radeksixi/redwire => ../../../redwire
+go 1.24

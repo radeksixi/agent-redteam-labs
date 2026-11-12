@@ -61,7 +61,7 @@ run_lab() {
 }
 
 run_lab "01" "First Autonomous Probe" "$ROOT_DIR/labs/01-first-probe/run_lab.sh"
-run_lab "02" "Multi-Transport Red-Teaming (redwire)" "$ROOT_DIR/labs/02-multi-transport/run_lab.sh"
+run_lab "02" "Multi-Transport Red-Teaming (REST, MCP, A2A, SSRF)" "$ROOT_DIR/labs/02-multi-transport/run_lab.sh"
 run_lab "03" "Autonomous Judge Evaluation (laya-as-judge)" "$ROOT_DIR/labs/03-judge-evaluation/run_lab.sh"
 run_lab "04" "Local LLM Target Hardening (Jetson Thor)" "$ROOT_DIR/labs/04-local-llm-target/run_lab.sh"
 run_lab "05" "Local Adversarial Attacker Loop" "$ROOT_DIR/labs/05-local-attacker/run_lab.sh"

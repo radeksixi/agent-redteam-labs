@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Lab 02: Multi-Protocol Red-Teaming with Redwire
+# Lab 02: Multi-Protocol Red-Teaming & SSRF Defense (Go Standard Library)
 # Copyright 2026 Radek (Sixi) SPDX-License-Identifier: Apache-2.0
 
 set -euo pipefail
@@ -12,5 +12,5 @@ if ! command -v go >/dev/null 2>&1; then
     exit 1
 fi
 
-echo ">>> Building and running Lab 02 Multi-Transport redwire harness..."
+echo ">>> Building and running Lab 02 Multi-Transport harness..."
 go run main.go
